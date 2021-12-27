@@ -66,6 +66,10 @@ function player:move(dt)
         loadNextMap()
     end
 
+    if player:enter("Ruby") then
+        player:collect()
+    end
+
     if player:enter("Danger") then
         player:dead()
         GAMESTATE = game.state.gameover
@@ -81,7 +85,6 @@ function player:keypressed(key)
 end
 
 function player:jump()
-    -- TODO set jump sound
     sound.jump:play()
     player:applyLinearImpulse(0, -player.jumpPower)
 end
@@ -93,6 +96,10 @@ function player:loadLayer(positionLayer)
     end
     
     player:setPosition(playerStartX, playerStartY)
+end
+
+function player:collect()
+
 end
 
 function player:dead()

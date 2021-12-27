@@ -37,6 +37,7 @@ function love.load()
         world:addCollisionClass('Player')
         world:addCollisionClass('Danger')
         world:addCollisionClass('Jarvis')
+        world:addCollisionClass('Ruby')
     -- end colliders
 
     player:load()

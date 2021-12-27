@@ -19,6 +19,9 @@ function loadMap(mapName)
     -- load jarvis position layer
     loadObjectMap(map, jarvis, "jarvis")
 
+    -- load rubys layers
+    loadObjectMap(map, rubys, "ruby")
+
     map.currentLevel = mapName
 
     return map
