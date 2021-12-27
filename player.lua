@@ -1,7 +1,9 @@
 -- presets player
 playerWidth = 50
 playerHeight = 100
-playerX = 0
+
+-- TODO set spawn player by tiled map
+playerX = window.width / 2 - playerWidth / 2 
 playerY = 0
 
 player = world:newRectangleCollider(playerX, playerY, playerWidth, playerHeight, {collision_class = "Player"})
@@ -17,6 +19,7 @@ end
 
 function player:update(dt)
     if player.body then
+        player:updateCam(dt)
         player:updateGround()
         player:move(dt)
     end
@@ -30,6 +33,11 @@ function player:updateGround()
     local colY = player:getY() + playerHeight / 2
     local colliders = world:queryRectangleArea(colX, colY, 50, 2, { 'Platform'})
     player.isGrounded = #colliders > 0
+end
+
+function player:updateCam(dt)
+    local px, py = player:getPosition()
+    cam:lookAt(px, love.graphics.getHeight() / 2)
 end
 
 function player:move(dt)    

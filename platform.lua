@@ -13,3 +13,7 @@ function platforms:draw(platforms)
         spawnPlatforms(obj.x, obj.y, obj.width, obj.height)
     end
 end
+
+function platforms:clear()
+
+end
