@@ -12,6 +12,10 @@ function loadMap(mapName)
     return sti(MAP_DIR .. mapName .. EXTENSION_LUA)
 end
 
+function updateMap(mapName)
+    GAMEMAP = loadMap(mapName)
+end
+
 function drawMap(map)
     local background = GAMEMAP.layers["background"]
     
