@@ -11,6 +11,7 @@ player:setFixedRotation(true)
 player.speed = 180
 player.isGrounded = true
 player.isMoving = false
+player.direction = 1
 player.jumpPower = 5000
 
 function player:load()
@@ -26,6 +27,8 @@ function player:update(dt)
 end
 
 function player:draw()
+    local px, py = player:getPosition()
+    love.graphics.draw(sprites.player, px, py, nil, player.direction * osize, osize, osize, osize)
 end
 
 function player:updateGround()

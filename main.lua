@@ -13,6 +13,7 @@ world = windfield.newWorld(0, 800, false)
 
 -- Import packages
 require 'sound'
+require 'sprites'
 require 'game/game'
 require 'platform'
 require 'danger'
