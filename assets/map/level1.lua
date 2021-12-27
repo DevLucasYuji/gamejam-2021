@@ -8,8 +8,8 @@ return {
   height = 48,
   tilewidth = 16,
   tileheight = 16,
-  nextlayerid = 4,
-  nextobjectid = 19,
+  nextlayerid = 5,
+  nextobjectid = 21,
   properties = {},
   tilesets = {
     {
@@ -157,6 +157,34 @@ return {
           y = 639,
           width = 16,
           height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      draworder = "topdown",
+      id = 4,
+      name = "jarvis",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      properties = {},
+      objects = {
+        {
+          id = 20,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 1040.67,
+          y = 640.667,
+          width = 14.6667,
+          height = 31.3333,
           rotation = 0,
           visible = true,
           properties = {}

@@ -15,12 +15,13 @@ world = windfield.newWorld(0, 800, false)
 require 'sound'
 require 'game/game'
 require 'platform'
+require 'jarvis'
 require 'player'
 require 'map'
 
 -- Current Game state
 GAMESTATE = game.state.resume
-GAMEMAP = loadMap(level.test)
+GAMEMAP = loadMap(level.one)
 
 function love.load()
     -- init setup
@@ -33,6 +34,7 @@ function love.load()
         world:addCollisionClass('Platform')
         world:addCollisionClass('Player')
         world:addCollisionClass('Danger')
+        world:addCollisionClass('Jarvis')
     -- end colliders
 
     player:load()

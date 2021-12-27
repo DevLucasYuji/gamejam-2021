@@ -55,6 +55,10 @@ function player:move(dt)
         player.isMoving = true
         player.direction = 1
     end
+
+    if jarvis:isCollidePlayer() then
+        loadNextMap()
+    end
 end
 
 function player:keypressed(key)
@@ -70,8 +74,8 @@ function player:jump()
     player:applyLinearImpulse(0, -player.jumpPower)
 end
 
-function player:initPosition(position)
-    for i, obj in pairs(position) do
+function player:loadLayer(positionLayer)
+    for i, obj in pairs(positionLayer) do
         playerStartX = obj.x
         playerStartY = obj.y
     end

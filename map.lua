@@ -4,32 +4,48 @@ local EXTENSION_LUA = ".lua"
 -- Global levels
 level = {
     one = "level1",
-    two = "level2",
-    test = "level_test"
+    two = "level2"
 }
 
 function loadMap(mapName)
     local map = sti(MAP_DIR .. mapName .. EXTENSION_LUA)
 
-    -- TODO: reset map
-
     -- load platforms layers
-    local platformLayer = map.layers["platform"]
-    if platformLayer then
-        platforms:draw(platformLayer.objects)
-    end
+    loadObjectMap(map, platforms, "platform")
 
     -- load player position layer
-    local playerLayer = map.layers["player"]
-    if playerLayer then
-        player:initPosition(playerLayer.objects)
-    end
+    loadObjectMap(map, player, "player")
+
+    -- load jarvis position layer
+    loadObjectMap(map, jarvis, "jarvis")
+
+    map.currentLevel = mapName
 
     return map
 end
 
+function loadObjectMap(map, object, layerName)
+    local layer = map.layers[layerName]
+    if layer and layer.objects then
+        object:loadLayer(layer.objects)
+    end
+end
+
 function updateMap(mapName)
+    clearMap()
     GAMEMAP = loadMap(mapName)
+end
+
+function loadNextMap()
+    local mapName
+
+    if GAMEMAP.currentLevel == level.one then
+        mapName = level.two
+    end
+
+    if mapName then 
+        updateMap(mapName) 
+    end
 end
 
 function drawMap()
@@ -39,4 +55,9 @@ function drawMap()
     if background then
         GAMEMAP:drawLayer(background)
     end
+end
+
+function clearMap()
+    platforms:clear()
+    jarvis:clear()
 end
