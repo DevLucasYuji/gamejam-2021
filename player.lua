@@ -71,6 +71,7 @@ end
 
 function player:jump()
     -- TODO set jump sound
+    sound.jump:play()
     player:applyLinearImpulse(0, -player.jumpPower)
 end
 
