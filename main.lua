@@ -24,11 +24,17 @@ GAMEMAP = loadMap(level.test)
 
 function love.load()
     -- init setup
-    love.window.setMode(window.width, window.height)
-    cam = cameraFile()
-    world:setQueryDebugDrawing(true)
-
+        love.window.setMode(window.width, window.height)
+        cam = cameraFile()
+        world:setQueryDebugDrawing(true)
     -- end setup
+
+    -- colliders
+        world:addCollisionClass('Platform')
+        world:addCollisionClass('Player')
+        world:addCollisionClass('Danger')
+    -- end colliders
+
     player:load()
 end
 
