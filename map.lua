@@ -9,24 +9,34 @@ level = {
 }
 
 function loadMap(mapName)
-    return sti(MAP_DIR .. mapName .. EXTENSION_LUA)
+    local map = sti(MAP_DIR .. mapName .. EXTENSION_LUA)
+
+    -- TODO: reset map
+
+    -- load platforms layers
+    local platformLayer = map.layers["platform"]
+    if platformLayer then
+        platforms:draw(platformLayer.objects)
+    end
+
+    -- load player position layer
+    local playerLayer = map.layers["player"]
+    if playerLayer then
+        player:initPosition(playerLayer.objects)
+    end
+
+    return map
 end
 
 function updateMap(mapName)
     GAMEMAP = loadMap(mapName)
 end
 
-function drawMap(map)
+function drawMap()
     local background = GAMEMAP.layers["background"]
     
     -- load background layers
     if background then
         GAMEMAP:drawLayer(background)
-    end
-
-    -- load platforms layers
-    local platformLayer = GAMEMAP.layers["platform"]
-    if platformLayer then
-        platforms:draw(platformLayer.objects)
     end
 end

@@ -3,10 +3,10 @@ playerWidth = 50
 playerHeight = 100
 
 -- TODO set spawn player by tiled map
-playerX = window.width / 2 - playerWidth / 2 
-playerY = 0
+playerStartX = window.width / 2 - playerWidth / 2 
+playerStartY = 0
 
-player = world:newRectangleCollider(playerX, playerY, playerWidth, playerHeight, {collision_class = "Player"})
+player = world:newRectangleCollider(playerStartX, playerStartY, playerWidth, playerHeight, {collision_class = "Player"})
 player:setFixedRotation(true)
 player.speed = 180
 player.isGrounded = true
@@ -68,4 +68,13 @@ end
 function player:jump()
     -- TODO set jump sound
     player:applyLinearImpulse(0, -player.jumpPower)
+end
+
+function player:initPosition(position)
+    for i, obj in pairs(position) do
+        playerStartX = obj.x
+        playerStartY = obj.y
+    end
+    
+    player:setPosition(playerStartX, playerStartY)
 end

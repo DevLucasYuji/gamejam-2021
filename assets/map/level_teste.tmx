@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="70" height="48" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="18">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="70" height="48" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="19">
  <editorsettings>
   <export target="level_test.lua" format="lua"/>
  </editorsettings>
@@ -60,5 +60,8 @@
  </layer>
  <objectgroup id="2" name="platform">
   <object id="17" x="0.113636" y="672.182" width="1119.89" height="32"/>
+ </objectgroup>
+ <objectgroup id="3" name="player">
+  <object id="18" x="32" y="639" width="16" height="32"/>
  </objectgroup>
 </map>

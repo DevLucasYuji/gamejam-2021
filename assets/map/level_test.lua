@@ -8,8 +8,8 @@ return {
   height = 48,
   tilewidth = 16,
   tileheight = 16,
-  nextlayerid = 3,
-  nextobjectid = 18,
+  nextlayerid = 4,
+  nextobjectid = 19,
   properties = {},
   tilesets = {
     {
@@ -128,6 +128,34 @@ return {
           x = 0.113636,
           y = 672.182,
           width = 1119.89,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      draworder = "topdown",
+      id = 3,
+      name = "player",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      properties = {},
+      objects = {
+        {
+          id = 18,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 32,
+          y = 639,
+          width = 16,
           height = 32,
           rotation = 0,
           visible = true,
