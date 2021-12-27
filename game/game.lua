@@ -12,7 +12,7 @@ game.state.resume = {
     keypressed = function(key) keypressedResume(key) end
 }
 
-game.gameover = {
+game.state.gameover = {
     update = function(dt) updateGameOver(dt) end,
     draw = function() drawGameOver() end,
     keypressed = nil

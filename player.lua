@@ -37,7 +37,10 @@ end
 
 function player:updateCam(dt)
     local px, py = player:getPosition()
-    cam:lookAt(px, love.graphics.getHeight() / 2)
+    local middleY = window.height / 2
+    py = py > middleY and middleY or py
+
+    cam:lookAt(px, py)
 end
 
 function player:move(dt)    
@@ -58,6 +61,11 @@ function player:move(dt)
 
     if jarvis:isCollidePlayer() then
         loadNextMap()
+    end
+
+    if player:enter("Danger") then
+        player:dead()
+        GAMESTATE = game.state.gameover
     end
 end
 
@@ -82,4 +90,8 @@ function player:loadLayer(positionLayer)
     end
     
     player:setPosition(playerStartX, playerStartY)
+end
+
+function player:dead()
+    sound.gameover:play()
 end

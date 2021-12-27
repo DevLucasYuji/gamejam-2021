@@ -15,6 +15,7 @@ world = windfield.newWorld(0, 800, false)
 require 'sound'
 require 'game/game'
 require 'platform'
+require 'danger'
 require 'jarvis'
 require 'player'
 require 'map'
