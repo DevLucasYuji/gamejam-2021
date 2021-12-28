@@ -1,6 +1,6 @@
 -- presets player
-playerWidth = 50
-playerHeight = 100
+playerWidth = 32
+playerHeight = 64
 
 -- TODO set spawn player by tiled map
 playerStartX = window.width / 2 - playerWidth / 2 
@@ -8,11 +8,11 @@ playerStartY = 0
 
 player = world:newRectangleCollider(playerStartX, playerStartY, playerWidth, playerHeight, {collision_class = "Player"})
 player:setFixedRotation(true)
-player.speed = 500
+player.speed = 360
 player.isGrounded = true
 player.isMoving = false
 player.direction = 1
-player.jumpPower = 5000
+player.jumpPower = 2250
 
 function player:load()
     player:setPosition(playerStartX, playerStartY)
@@ -28,7 +28,7 @@ end
 
 function player:draw()
     local px, py = player:getPosition()
-    love.graphics.draw(sprites.player, px, py, nil, player.direction * 1.5, 1.5, 50, 40)
+    love.graphics.draw(sprites.player, px, py, nil, player.direction * 1, 1, 50, 40)
 end
 
 function player:updateGround()
@@ -41,9 +41,17 @@ end
 function player:updateCam(dt)
     local px, py = player:getPosition()
     local middleY = window.height / 2
-    py = py > middleY and middleY or py
+    local middleX = window.width / 2
 
-    cam:lookAt(px, py)
+    local gameWidth = GAMEMAP.width * 16
+    local endWidth = gameWidth - middleX
+
+    px = px < middleX and middleX or px
+    px = px > endWidth and endWidth or px
+
+    -- py = py > middleY and middleY or py
+
+    cam:lookAt(px, middleY)
 end
 
 function player:move(dt)    
@@ -70,7 +78,7 @@ function player:move(dt)
         player:collect()
     end
 
-    if player:enter("Danger") then
+    if player:enter("Danger") and player:enter("Enemy") then
         player:dead()
         GAMESTATE = game.state.gameover
     end

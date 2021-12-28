@@ -2,9 +2,10 @@ enemies = {}
 
 function spawnEnemies(x, y)
     local enemy = world:newRectangleCollider(x, y, 64, 64, {collision_class = "Enemy"})
+    enemy:setFixedRotation(true)
     local ex, ey = enemy:getPosition()
     enemy.pivotX = ex
-    enemy.speed = 360
+    enemy.speed = 180
     enemy.direction = 1
     table.insert(enemies, enemy)
 end
@@ -45,23 +46,13 @@ function enemies:update(dt)
         end
         
         local colliders = world:queryRectangleArea(ex + (20 * enemy.direction), ey + 20, 20, 20, {'Platform'})
-        if #colliders == 0 then
+        if #colliders == 0 or #colliders > 1 then
             enemy.direction = enemy.direction * -1
         end
 
         enemy:setX(ex + enemy.speed * dt * enemy.direction)
     end
 end
-
--- local ex, ey = e:getPosition()
-
--- local colliders = world:queryRectangleArea(ex + (40 * e.direction), ey + 40, 10, 10, {'Platform'})
--- if #colliders == 0 then
---     e.direction = e.direction * -1
--- end
-
--- e:setX(ex + e.speed * dt * e.direction)
-
 
 function enemies:draw()
     local enemyWidth = sprites.enemy:getHeight() / 2

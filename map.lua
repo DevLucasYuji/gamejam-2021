@@ -21,7 +21,7 @@ level = {
         name = "level3",
         phase = "futuro",
         sound = sound.level3,
-        volume = 0.3,
+        volume = 0.1,
         background = sprites.level3
     }
 }
