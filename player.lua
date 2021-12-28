@@ -32,9 +32,9 @@ function player:draw()
 end
 
 function player:updateGround()
-    local colX = player:getX() - playerWidth / 4 
+    local colX = player:getX() - playerWidth / 2
     local colY = player:getY() + playerHeight / 2
-    local colliders = world:queryRectangleArea(colX, colY, playerWidth / 2, 1, {'Platform'})
+    local colliders = world:queryRectangleArea(colX, colY, 50, 2, { 'Platform'})
     player.isGrounded = #colliders > 0
 end
 
@@ -78,7 +78,7 @@ function player:move(dt)
         player:collect()
     end
 
-    if player:enter("Danger") or player:enter("Enemy") then
+    if player:enter("Danger") and player:enter("Enemy") then
         player:dead()
         GAMESTATE = game.state.gameover
     end
@@ -93,7 +93,7 @@ function player:keypressed(key)
 end
 
 function player:jump()
-    sound.playJump()
+    sound.jump:play()
     player:applyLinearImpulse(0, -player.jumpPower)
 end
 
@@ -108,7 +108,8 @@ end
 
 function player:collect()
     SCORE = SCORE + 1
-    sound:playRuby()
+    sound.ruby:stop()
+    sound.ruby:play()
 end
 
 function player:dead()

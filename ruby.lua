@@ -2,6 +2,10 @@ rubys = {}
 
 function spawnRuby(x, y)
     local ruby = {}
+    ruby.grid = anim8.newGrid(18, 16, sprites.ruby:getWidth(), sprites.ruby:getHeight())
+    ruby.animations = {}
+
+    ruby.animations.play = anim8.newAnimation(ruby.grid('1-4', 1), 0.2)
     ruby.x = x
     ruby.y = y
     table.insert(rubys, ruby)
@@ -30,9 +34,15 @@ function rubys:isCollidePlayer()
     return false
 end
 
+function rubys:update(dt) 
+    for i, obj in ipairs(rubys) do
+        obj.animations.play:update(dt)
+    end
+end
+
 function rubys:draw()
     for i, obj in ipairs(rubys) do
-        love.graphics.draw(sprites.ruby, obj.x, obj.y, 0, 2, 2)
+        obj.animations.play:draw(sprites.ruby, obj.x, obj.y, nil, 2 * -1, 2)
     end
 end
 

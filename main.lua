@@ -7,6 +7,8 @@ window.height = 720
 cameraFile = require 'libraries/hump/camera'
 windfield = require 'libraries/windfield/windfield'
 sti = require 'libraries/Simple-Tiled-Implementation/sti'
+anim8 = require 'libraries/anim8/anim8'
+
 
 -- Load world
 world = windfield.newWorld(0, 800, false)
