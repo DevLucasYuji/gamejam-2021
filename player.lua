@@ -8,11 +8,11 @@ playerStartY = 0
 
 player = world:newRectangleCollider(playerStartX, playerStartY, playerWidth, playerHeight, {collision_class = "Player"})
 player:setFixedRotation(true)
-player.speed = 500
+player.speed = 360
 player.isGrounded = true
 player.isMoving = false
 player.direction = 1
-player.jumpPower = 2000
+player.jumpPower = 2250
 
 function player:load()
     player:setPosition(playerStartX, playerStartY)
@@ -49,9 +49,9 @@ function player:updateCam(dt)
     px = px < middleX and middleX or px
     px = px > endWidth and endWidth or px
 
-    py = py > middleY and middleY or py
+    -- py = py > middleY and middleY or py
 
-    cam:lookAt(px, py)
+    cam:lookAt(px, middleY)
 end
 
 function player:move(dt)    

@@ -12,7 +12,6 @@ sti = require 'libraries/Simple-Tiled-Implementation/sti'
 world = windfield.newWorld(0, 800, false)
 
 SCORE = 0
-SLEEP = false
 
 -- Import packages
 require 'game/game'
@@ -29,7 +28,7 @@ require 'map'
 
 -- Current Game state
 GAMESTATE = game.state.resume
-GAMEMAP = loadMap(level.one)
+GAMEMAP = loadMap(level.three)
 
 function love.load()
     -- init setup
@@ -55,7 +54,7 @@ function love.update(dt)
 end
 
 function love.draw()
-    -- love.graphics.draw(GAMEMAP.currentLevel.background, 0, 0)
+    love.graphics.draw(GAMEMAP.currentLevel.background, 0, 0)
     cam:attach()
         GAMESTATE.draw()
     cam:detach()
