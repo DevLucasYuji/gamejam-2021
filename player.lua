@@ -78,7 +78,7 @@ function player:move(dt)
         player:collect()
     end
 
-    if player:enter("Danger") and player:enter("Enemy") then
+    if player:enter("Danger") or player:enter("Enemy") then
         player:dead()
         GAMESTATE = game.state.gameover
     end
@@ -93,7 +93,7 @@ function player:keypressed(key)
 end
 
 function player:jump()
-    sound.jump:play()
+    sound:playJump()
     player:applyLinearImpulse(0, -player.jumpPower)
 end
 
@@ -108,8 +108,7 @@ end
 
 function player:collect()
     SCORE = SCORE + 1
-    sound.ruby:stop()
-    sound.ruby:play()
+    sound:playRuby()
 end
 
 function player:dead()

@@ -30,7 +30,7 @@ require 'map'
 
 -- Current Game state
 GAMESTATE = game.state.resume
-GAMEMAP = loadMap(level.three)
+GAMEMAP = loadMap(level.one)
 
 function love.load()
     -- init setup
