@@ -1,7 +1,7 @@
 function updateGameResume(dt)
     world:update(dt)
     player:update(dt)
-
+    rubys:update(dt)
     enemies:update(dt)
 end
 
