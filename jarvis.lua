@@ -13,12 +13,17 @@ function spawnJarvis(x, y)
     jarvis.y = y
 end
 
+function jarvis:draw()
+    local jarvisHeight = sprites.jarvis:getHeight() / 2
+    love.graphics.draw(sprites.jarvis, jarvis.x, jarvis.y - jarvisHeight, 0, -1, 1)
+end
+
 function jarvis:clear()
     jarvis.x = 0
     jarvis.y = 0
 end
 
 function jarvis:isCollidePlayer()
-    local jarvis = world:queryCircleArea(jarvis.x, jarvis.y, 10, {'Player'})
+    local jarvis = world:queryCircleArea(jarvis.x, jarvis.y, 75, {'Player'})
     return #jarvis > 0
 end

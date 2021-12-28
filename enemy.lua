@@ -1,9 +1,10 @@
 enemy = {}
 
 function enemy:drawLayer()
+
 end
 
-function enemy:update()
+function enemy:update(dt)
 
 end
 

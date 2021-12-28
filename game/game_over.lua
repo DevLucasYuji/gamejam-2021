@@ -3,7 +3,6 @@ function updateGameOver(dt)
 end
 
 function drawGameOver()
-    -- world:draw()
     printGameOver()
 
     drawHud()
@@ -13,6 +12,7 @@ function drawGameOver()
 end
 
 function printGameOver()
+    love.graphics.setColor(0, 0, 0, 1)
     local text = "GAMEOVER!"
     local cx, cy = cam:position()
 
@@ -21,9 +21,8 @@ function printGameOver()
 
     local fw = font:getWidth(text) / 2
     local fh = font:getHeight(text) / 2
-    love.graphics.setColor(1, 1, 1, 1)
-    love.graphics.print(text, cx - fw, cy - fh - 32)
 
+    love.graphics.print(text, cx - fw, cy - fh - 32)
     local font = love.graphics.newFont(16)
     love.graphics.setFont(font)
 
@@ -31,6 +30,7 @@ function printGameOver()
     local fh = font:getHeight(text) / 2
     
     love.graphics.print("Press enter to play again", cx - fw, cy - fh + 8)
+    love.graphics.setColor(1, 1, 1, 1)
 end
 
 function keypressedGameOver(key)

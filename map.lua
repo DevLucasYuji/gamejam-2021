@@ -3,12 +3,20 @@ local EXTENSION_LUA = ".lua"
 
 -- Global levels
 level = {
-    one = "level1",
-    two = "level2"
+    one = {
+        name = "level1",
+        phase = "passado",
+        background = sprites.level1
+    },
+    two = {
+        name = "level2",
+        phase = "presente",
+        background = sprites.level2
+    }
 }
 
-function loadMap(mapName)
-    local map = sti(MAP_DIR .. mapName .. EXTENSION_LUA)
+function loadMap(mapLevel)
+    local map = sti(MAP_DIR .. mapLevel.name .. EXTENSION_LUA)
 
     -- load platforms layers
     loadObjectMap(map, platforms, "platform")
@@ -22,7 +30,7 @@ function loadMap(mapName)
     -- load rubys layers
     loadObjectMap(map, rubys, "ruby")
 
-    map.currentLevel = mapName
+    map.currentLevel = mapLevel
 
     return map
 end
@@ -42,7 +50,7 @@ end
 function loadNextMap()
     local mapName
 
-    if GAMEMAP.currentLevel == level.one then
+    if GAMEMAP.currentLevel.name == level.one.name then
         mapName = level.two
     end
 

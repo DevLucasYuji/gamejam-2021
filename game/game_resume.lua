@@ -4,10 +4,10 @@ function updateGameResume(dt)
 end
 
 function drawGameResume()
-    world:draw()
     drawMap()
 
     player:draw()
+    jarvis:draw()
 
     drawHud()
 end

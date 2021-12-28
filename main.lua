@@ -1,7 +1,7 @@
 -- Screen Size
 window = {}
-window.width = 1120
-window.height = 768
+window.width = 1280
+window.height = 720
 
 -- Import Libs
 cameraFile = require 'libraries/hump/camera'
@@ -52,6 +52,7 @@ function love.update(dt)
 end
 
 function love.draw()
+    love.graphics.draw(GAMEMAP.currentLevel.background, 0, 0)
     cam:attach()
         GAMESTATE.draw()
     cam:detach()
