@@ -32,16 +32,26 @@ function player:draw()
 end
 
 function player:updateGround()
-    local colX = player:getX() - playerWidth / 2
+    local colX = player:getX() - playerWidth / 4 
     local colY = player:getY() + playerHeight / 2
-    local colliders = world:queryRectangleArea(colX, colY, 50, 2, { 'Platform'})
+    local colliders = world:queryRectangleArea(colX, colY, playerWidth / 2, 1, {'Platform'})
     player.isGrounded = #colliders > 0
 end
 
 function player:updateCam(dt)
     local px, py = player:getPosition()
     local middleY = window.height / 2
+    local middleX = window.width / 2
+
+    local gameWidth = GAMEMAP.width * 16
+    local endWidth = gameWidth - middleX
+
+    px = px < middleX and middleX or px
+    px = px > endWidth and endWidth or px
+
     py = py > middleY and middleY or py
+    
+    SCORE = px
 
     cam:lookAt(px, py)
 end
