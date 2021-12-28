@@ -4,7 +4,7 @@ function spawnEnemies(x, y)
     local enemy = world:newRectangleCollider(x, y, 64, 64, {collision_class = "Enemy"})
     local ex, ey = enemy:getPosition()
     enemy.pivotX = ex
-    enemy.speed = 40
+    enemy.speed = 360
     enemy.direction = 1
     table.insert(enemies, enemy)
 end
@@ -33,16 +33,23 @@ end
 function enemies:update(dt)
     for i, enemy in ipairs(enemies) do
         local ex, ey = enemy:getPosition()
-        local maxX = enemy.pivotX + 50
-        local minX = enemy.pivotX - 50
-        
-        if enemy.direction == 1 then
-            enemy.direction = ex < minX and -1 or 1
-            enemy:setX(ex + 5) 
-        else
-            enemy.direction = ex > maxX and 1 or -1
-            enemy:setX(ex - 5)
+        local maxX = enemy.pivotX + 300
+        local minX = enemy.pivotX - 300
+
+        if ex > maxX then
+            enemy.direction = -1
         end
+        
+        if ex < minX then
+            enemy.direction = 1
+        end
+        
+        local colliders = world:queryRectangleArea(ex + (20 * enemy.direction), ey + 20, 20, 20, {'Platform'})
+        if #colliders == 0 then
+            enemy.direction = enemy.direction * -1
+        end
+
+        enemy:setX(ex + enemy.speed * dt * enemy.direction)
     end
 end
 
@@ -55,10 +62,12 @@ end
 
 -- e:setX(ex + e.speed * dt * e.direction)
 
+
 function enemies:draw()
+    local enemyWidth = sprites.enemy:getHeight() / 2
     local enemyHeight = sprites.enemy:getHeight() / 2 - 16
     for i, enemy in ipairs(enemies) do
         local ex, ey = enemy:getPosition()
-        love.graphics.draw(sprites.enemy, ex, ey - enemyHeight)
+        love.graphics.draw(sprites.enemy, ex - enemyWidth, ey - enemyHeight)
     end
 end
