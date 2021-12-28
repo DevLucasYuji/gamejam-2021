@@ -50,8 +50,6 @@ function player:updateCam(dt)
     px = px > endWidth and endWidth or px
 
     py = py > middleY and middleY or py
-    
-    SCORE = px
 
     cam:lookAt(px, py)
 end
