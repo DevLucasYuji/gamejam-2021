@@ -1,8 +1,7 @@
 rubys = {}
 
 function spawnRuby(x, y)
-    local ruby = world:newRectangleCollider(x, y, 32, 32, {collision_class = "Ruby"})
-    ruby:setType("static")
+    local ruby = {}
     ruby.x = x
     ruby.y = y
     table.insert(rubys, ruby)
@@ -23,7 +22,6 @@ function rubys:isCollidePlayer()
         local px, py = player:getPosition()
         local isCollide = distanceBetween(px, py, obj.x, obj.y) < 75
         if isCollide then 
-            obj:destroy()
             table.remove(rubys, i) 
             return isCollide
         end
@@ -41,9 +39,6 @@ end
 function rubys:clear()
     local i = #rubys
     while i > -1 do
-        if rubys[i] ~= nil then
-            rubys[i]:destroy()
-        end
         table.remove(rubys, i)
         i = i - 1
     end

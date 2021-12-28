@@ -1,6 +1,6 @@
 -- presets player
-playerWidth = 50
-playerHeight = 100
+playerWidth = 32
+playerHeight = 64
 
 -- TODO set spawn player by tiled map
 playerStartX = window.width / 2 - playerWidth / 2 
@@ -12,7 +12,7 @@ player.speed = 500
 player.isGrounded = true
 player.isMoving = false
 player.direction = 1
-player.jumpPower = 5000
+player.jumpPower = 2000
 
 function player:load()
     player:setPosition(playerStartX, playerStartY)
@@ -28,7 +28,7 @@ end
 
 function player:draw()
     local px, py = player:getPosition()
-    love.graphics.draw(sprites.player, px, py, nil, player.direction * 1.5, 1.5, 50, 40)
+    love.graphics.draw(sprites.player, px, py, nil, player.direction * 1, 1, 50, 40)
 end
 
 function player:updateGround()
@@ -70,7 +70,7 @@ function player:move(dt)
         player:collect()
     end
 
-    if player:enter("Danger") then
+    if player:enter("Danger") or player:enter("Enemy") then
         player:dead()
         GAMESTATE = game.state.gameover
     end
@@ -85,7 +85,7 @@ function player:keypressed(key)
 end
 
 function player:jump()
-    sound.jump:play()
+    sound.playJump()
     player:applyLinearImpulse(0, -player.jumpPower)
 end
 
@@ -100,8 +100,7 @@ end
 
 function player:collect()
     SCORE = SCORE + 1
-    sound.ruby:stop()
-    sound.ruby:play()
+    sound:playRuby()
 end
 
 function player:dead()

@@ -24,3 +24,9 @@ function resetGame()
     GAMESTATE = game.state.resume
     updateMap(GAMEMAP.currentLevel)
 end
+
+function drawGame()
+    player:draw()
+    jarvis:draw()
+    enemies:draw()
+end

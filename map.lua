@@ -41,6 +41,9 @@ function loadMap(mapLevel)
     -- load rubys layers
     loadObjectMap(map, rubys, "ruby")
 
+    -- load enemy layers
+    loadObjectMap(map, enemies, "enemy")
+
     map.currentLevel = mapLevel
 
     playMapSound(mapLevel)
@@ -56,7 +59,6 @@ function loadObjectMap(map, object, layerName)
 end
 
 function updateMap(mapName)
-    stopMapSound(GAMEMAP.currentLevel)
     clearMap()
     GAMEMAP = loadMap(mapName)
 end
@@ -83,6 +85,9 @@ function loadNextMap()
     end
 
     if mapName then 
+        stopMapSound(GAMEMAP.currentLevel)
+        sound:playTeleport()
+
         updateMap(mapName) 
     end
 end
@@ -96,10 +101,13 @@ function drawMap()
     end
 
     rubys:draw()
+
+    enemies:draw()
 end
 
 function clearMap()
     platforms:clear()
     jarvis:clear()
     rubys:clear()
+    enemies:clear()
 end

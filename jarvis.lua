@@ -14,8 +14,8 @@ function spawnJarvis(x, y)
 end
 
 function jarvis:draw()
-    local jarvisHeight = sprites.jarvis:getHeight() / 2
-    love.graphics.draw(sprites.jarvis, jarvis.x, jarvis.y - jarvisHeight, 0, -1, 1)
+    local jarvisHeight = sprites.jarvis:getHeight() / 2 - 16
+    love.graphics.draw(sprites.jarvis, jarvis.x, jarvis.y - jarvisHeight, 0, -1, 0.8)
 end
 
 function jarvis:clear()

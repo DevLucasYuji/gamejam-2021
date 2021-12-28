@@ -3,12 +3,12 @@ function updateGameOver(dt)
 end
 
 function drawGameOver()
-    printGameOver()
-
     drawHud()
-
     drawMap()
 
+    drawGame()
+
+    printGameOver()
 end
 
 function printGameOver()

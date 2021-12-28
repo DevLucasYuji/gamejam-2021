@@ -1,14 +1,14 @@
 function updateGameResume(dt)
     world:update(dt)
     player:update(dt)
+
+    enemies:update(dt)
 end
 
 function drawGameResume()
+    world:draw()
     drawMap()
-
-    player:draw()
-    jarvis:draw()
-
+    drawGame()
     drawHud()
 end
 

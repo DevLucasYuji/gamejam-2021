@@ -20,6 +20,7 @@ require 'sprites'
 require 'hud'
 require 'platform'
 require 'danger'
+require 'enemy'
 require 'ruby'
 require 'jarvis'
 require 'player'
@@ -42,6 +43,7 @@ function love.load()
         world:addCollisionClass('Danger')
         world:addCollisionClass('Jarvis')
         world:addCollisionClass('Ruby')
+        world:addCollisionClass('Enemy')
     -- end colliders
 
     player:load()
