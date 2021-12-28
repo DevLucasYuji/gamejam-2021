@@ -9,4 +9,5 @@ function enemy:update(dt)
 end
 
 function enemy:draw()
+
 end

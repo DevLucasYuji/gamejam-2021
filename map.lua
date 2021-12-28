@@ -6,13 +6,24 @@ level = {
     one = {
         name = "level1",
         phase = "passado",
+        sound = sound.level1,
+        volume = 0.1,
         background = sprites.level1
     },
     two = {
         name = "level2",
         phase = "presente",
+        sound = sound.level2,
+        volume = 0.2,
         background = sprites.level2
     }
+    -- three = {
+    --     name = "level3",
+    --     phase = "futuro",
+    --     sound = sound.level3,
+    --     volume = 0.3,
+    --     background = sprites.level3
+    -- }
 }
 
 function loadMap(mapLevel)
@@ -32,6 +43,8 @@ function loadMap(mapLevel)
 
     map.currentLevel = mapLevel
 
+    playMapSound(mapLevel)
+
     return map
 end
 
@@ -43,15 +56,30 @@ function loadObjectMap(map, object, layerName)
 end
 
 function updateMap(mapName)
+    stopMapSound(GAMEMAP.currentLevel)
     clearMap()
     GAMEMAP = loadMap(mapName)
+end
+
+function stopMapSound(mapLevel)
+    mapLevel.sound:stop()
+end
+
+function playMapSound(mapLevel)
+    mapLevel.sound:play()
+    mapLevel.sound:setVolume(mapLevel.volume)
+    mapLevel.sound:setLooping(true)
 end
 
 function loadNextMap()
     local mapName
 
+    local levels = #level
+
     if GAMEMAP.currentLevel.name == level.one.name then
         mapName = level.two
+    -- else if GAMEMAP.currentLevel.name == level.two.name then
+    --     mapName = level.three
     end
 
     if mapName then 
