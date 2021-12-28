@@ -24,6 +24,6 @@ function jarvis:clear()
 end
 
 function jarvis:isCollidePlayer()
-    local jarvis = world:queryCircleArea(jarvis.x, jarvis.y, 75, {'Player'})
+    local jarvis = world:queryCircleArea(jarvis.x - sprites.jarvis:getWidth() / 2, jarvis.y, 40, {'Player'})
     return #jarvis > 0
 end

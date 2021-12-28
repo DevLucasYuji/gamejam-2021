@@ -16,14 +16,14 @@ level = {
         sound = sound.level2,
         volume = 0.2,
         background = sprites.level2
+    },
+    three = {
+        name = "level3",
+        phase = "futuro",
+        sound = sound.level3,
+        volume = 0.3,
+        background = sprites.level3
     }
-    -- three = {
-    --     name = "level3",
-    --     phase = "futuro",
-    --     sound = sound.level3,
-    --     volume = 0.3,
-    --     background = sprites.level3
-    -- }
 }
 
 function loadMap(mapLevel)
@@ -80,12 +80,13 @@ function loadNextMap()
 
     if GAMEMAP.currentLevel.name == level.one.name then
         mapName = level.two
-    -- else if GAMEMAP.currentLevel.name == level.two.name then
-    --     mapName = level.three
+    elseif GAMEMAP.currentLevel.name == level.two.name then
+        mapName = level.three
     end
 
     if mapName then 
         stopMapSound(GAMEMAP.currentLevel)
+        SCORE = 0
         sound:playTeleport()
 
         updateMap(mapName) 
