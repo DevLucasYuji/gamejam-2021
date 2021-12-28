@@ -15,5 +15,12 @@ game.state.resume = {
 game.state.gameover = {
     update = function(dt) updateGameOver(dt) end,
     draw = function() drawGameOver() end,
-    keypressed = nil
+    keypressed = function(key) keypressedGameOver(key) end
 }
+
+function resetGame()
+    player:load()
+    SCORE = 0
+    GAMESTATE = game.state.resume
+    updateMap(GAMEMAP.currentLevel)
+end

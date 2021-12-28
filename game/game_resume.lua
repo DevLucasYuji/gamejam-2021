@@ -8,6 +8,8 @@ function drawGameResume()
     drawMap()
 
     player:draw()
+
+    drawHud()
 end
 
 function keypressedResume(key)

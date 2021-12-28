@@ -8,14 +8,14 @@ playerStartY = 0
 
 player = world:newRectangleCollider(playerStartX, playerStartY, playerWidth, playerHeight, {collision_class = "Player"})
 player:setFixedRotation(true)
-player.speed = 180
+player.speed = 500
 player.isGrounded = true
 player.isMoving = false
 player.direction = 1
 player.jumpPower = 5000
 
 function player:load()
-
+    player:setPosition(playerStartX, playerStartY)
 end
 
 function player:update(dt)
@@ -28,7 +28,7 @@ end
 
 function player:draw()
     local px, py = player:getPosition()
-    love.graphics.draw(sprites.player, px, py, nil, player.direction * osize, osize, osize, osize)
+    love.graphics.draw(sprites.player, px, py, nil, player.direction * 1.5, 1.5, 50, 40)
 end
 
 function player:updateGround()
@@ -66,7 +66,7 @@ function player:move(dt)
         loadNextMap()
     end
 
-    if player:enter("Ruby") then
+    if rubys:isCollidePlayer() then
         player:collect()
     end
 
@@ -94,12 +94,14 @@ function player:loadLayer(positionLayer)
         playerStartX = obj.x
         playerStartY = obj.y
     end
-    
-    player:setPosition(playerStartX, playerStartY)
+
+    player:load()
 end
 
 function player:collect()
-
+    SCORE = SCORE + 1
+    sound.ruby:stop()
+    sound.ruby:play()
 end
 
 function player:dead()

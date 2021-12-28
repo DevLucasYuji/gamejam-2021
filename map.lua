@@ -58,9 +58,12 @@ function drawMap()
     if background then
         GAMEMAP:drawLayer(background)
     end
+
+    rubys:draw()
 end
 
 function clearMap()
     platforms:clear()
     jarvis:clear()
+    rubys:clear()
 end

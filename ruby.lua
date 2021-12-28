@@ -1,16 +1,40 @@
 rubys = {}
 
-function spawnRuby(x, y, width, height)
-    if width > 0 and height > 0 then
-        local ruby = world:newRectangleCollider(x, y, width, height, {collision_class = "Ruby"})
-        ruby:setType('static')
-        table.insert(rubys, ruby)
-    end
+function spawnRuby(x, y)
+    local ruby = world:newRectangleCollider(x, y, 32, 32, {collision_class = "Ruby"})
+    ruby:setType("static")
+    ruby.x = x
+    ruby.y = y
+    table.insert(rubys, ruby)
 end
 
 function rubys:loadLayer(ruby)
-    for i, obj in pairs(platforms) do
-        spawnRuby(obj.x, obj.y, obj.width, obj.height)
+    for i, obj in pairs(ruby) do
+        spawnRuby(obj.x, obj.y)
+    end
+end
+
+function distanceBetween(x1, y1, x2, y2)
+    return math.sqrt((x2 - x1)^2 + (y2 - y1)^2)
+end
+    
+function rubys:isCollidePlayer()
+    for i, obj in ipairs(rubys) do
+        local px, py = player:getPosition()
+        local isCollide = distanceBetween(px, py, obj.x, obj.y) < 75
+        if isCollide then 
+            obj:destroy()
+            table.remove(rubys, i) 
+            return isCollide
+        end
+    end
+
+    return false
+end
+
+function rubys:draw()
+    for i, obj in ipairs(rubys) do
+        love.graphics.draw(sprites.ruby, obj.x, obj.y, 0, 2, 2)
     end
 end
 

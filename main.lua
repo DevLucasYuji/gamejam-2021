@@ -11,12 +11,16 @@ sti = require 'libraries/Simple-Tiled-Implementation/sti'
 -- Load world
 world = windfield.newWorld(0, 800, false)
 
+SCORE = 0
+
 -- Import packages
+require 'game/game'
 require 'sound'
 require 'sprites'
-require 'game/game'
+require 'hud'
 require 'platform'
 require 'danger'
+require 'ruby'
 require 'jarvis'
 require 'player'
 require 'map'
