@@ -14,5 +14,5 @@ sprites.enemy:setFilter("nearest", "nearest")
 
 sprites.level1 = love.graphics.newImage('assets/background/level1.png')
 sprites.level2 = love.graphics.newImage('assets/background/level1.png')
-sprites.level3 = love.graphics.newImage('assets/background/level1.png')
+sprites.level3 = love.graphics.newImage('assets/background/level3.png')
 
