@@ -3,6 +3,9 @@ window = {}
 window.width = 1280
 window.height = 720
 
+middleY = window.height / 2
+middleX = window.width / 2
+
 SCORE = 0
 
 function love.load()

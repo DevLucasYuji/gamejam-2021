@@ -1,5 +1,6 @@
-local MAP_DIR = "assets/map/"
-local EXTENSION_LUA = ".lua"
+MAP_DIR = "assets/map/"
+EXTENSION_LUA = ".lua"
+map = {}
 
 -- Global levels
 level = {
@@ -27,7 +28,7 @@ level = {
 }
 
 function loadMap(mapLevel)
-    local map = sti(MAP_DIR .. mapLevel.name .. EXTENSION_LUA)
+    map = sti(MAP_DIR .. mapLevel.name .. EXTENSION_LUA)
 
     -- load platforms layers
     loadObjectMap(map, platforms, "platform")
@@ -73,11 +74,10 @@ function playMapSound(mapLevel)
     mapLevel.sound:setLooping(true)
 end
 
+mapName = {}
+levels = #level
+
 function loadNextMap()
-    local mapName
-
-    local levels = #level
-
     if GAMEMAP.currentLevel.name == level.one.name then
         mapName = level.two
     elseif GAMEMAP.currentLevel.name == level.two.name then

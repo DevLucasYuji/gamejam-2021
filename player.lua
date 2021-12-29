@@ -21,6 +21,12 @@ player.animations.side = anim8.newAnimation(player.grid('1-4', 1), 0.2)
 
 player.animation = player.animations.idle
 
+-- "Local" variables
+px = 0
+py = 0
+gameWidth = 0
+endWidth = 0
+
 function player:load()
     player:setPosition(playerStartX, playerStartY)
 end
@@ -46,12 +52,10 @@ function player:updateGround()
 end
 
 function player:updateCam(dt)
-    local px, py = player:getPosition()
-    local middleY = window.height / 2
-    local middleX = window.width / 2
+    px, py = player:getPosition()
 
-    local gameWidth = GAMEMAP.width * 16
-    local endWidth = gameWidth - middleX
+    gameWidth = GAMEMAP.width * 16
+    endWidth = gameWidth - middleX
 
     px = px < middleX and middleX or px
     px = px > endWidth and endWidth or px

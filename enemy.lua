@@ -1,9 +1,15 @@
 enemies = {}
 
+enemy = {}
+ex = 0
+ey = 0
+enemySize = 0
+enemyColliders = 0
+
 function spawnEnemies(x, y)
-    local enemy = world:newRectangleCollider(x, y, 64, 64, {collision_class = "Enemy"})
+    enemy = world:newRectangleCollider(x, y, 64, 64, {collision_class = "Enemy"})
     enemy:setFixedRotation(true)
-    local ex, ey = enemy:getPosition()
+    ex, ey = enemy:getPosition()
     enemy.pivotX = ex
     enemy.speed = 180
     enemy.direction = 1
@@ -17,13 +23,13 @@ function enemies:loadLayer(enemies)
 end
 
 function enemies:clear()
-    local i = #enemies
-    while i > -1 do
-        if enemies[i] ~= nil then
-            enemies[i]:destroy()
+    enemySize = #enemies
+    while enemySize > -1 do
+        if enemies[enemySize] ~= nil then
+            enemies[enemySize]:destroy()
         end
         table.remove(enemies, i)
-        i = i - 1
+        enemySize = enemySize - 1
     end
 end
 
@@ -33,7 +39,7 @@ end
 
 function enemies:update(dt)
     for i, enemy in ipairs(enemies) do
-        local ex, ey = enemy:getPosition()
+        ex, ey = enemy:getPosition()
         if ex > enemy.pivotX + 300 then
             enemy.direction = -1
         end
@@ -42,8 +48,8 @@ function enemies:update(dt)
             enemy.direction = 1
         end
         
-        local colliders = world:queryRectangleArea(ex + (20 * enemy.direction), ey + 20, 20, 20, {'Platform'})
-        if #colliders == 0 or #colliders > 1 then
+        enemyColliders = world:queryRectangleArea(ex + (20 * enemy.direction), ey + 20, 20, 20, {'Platform'})
+        if #enemyColliders == 0 or #enemyColliders > 1 then
             enemy.direction = enemy.direction * -1
         end
 

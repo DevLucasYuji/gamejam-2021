@@ -1,6 +1,7 @@
 rubys = {}
+rubySize = 0
 
-function spawnRuby(x, y)
+function spawnRuby(x, y)    
     local ruby = {}
     ruby.grid = anim8.newGrid(18, 16, sprites.ruby:getWidth(), sprites.ruby:getHeight())
     ruby.animations = {}
@@ -46,9 +47,9 @@ function rubys:draw()
 end
 
 function rubys:clear()
-    local i = #rubys
-    while i > -1 do
-        table.remove(rubys, i)
-        i = i - 1
+    rubySize = #rubys
+    while rubySize > -1 do
+        table.remove(rubys, rubySize)
+        rubySize = rubySize - 1
     end
 end
