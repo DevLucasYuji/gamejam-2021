@@ -93,12 +93,10 @@ function loadNextMap()
     end
 end
 
-function drawMap()
-    local background = GAMEMAP.layers["background"]
-    
+function drawMap()    
     -- load background layers
-    if background then
-        GAMEMAP:drawLayer(background)
+    if GAMEMAP.layers["background"] then
+        GAMEMAP:drawLayer(GAMEMAP.layers["background"])
     end
 
     rubys:draw()

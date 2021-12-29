@@ -24,10 +24,9 @@ end
 function rubys:isCollidePlayer()
     for i, obj in ipairs(rubys) do
         local px, py = player:getPosition()
-        local isCollide = distanceBetween(px, py, obj.x, obj.y) < 75
-        if isCollide then 
+        if distanceBetween(px, py, obj.x, obj.y) < 75 then 
             table.remove(rubys, i) 
-            return isCollide
+            return true
         end
     end
 

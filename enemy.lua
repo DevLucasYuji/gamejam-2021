@@ -34,14 +34,11 @@ end
 function enemies:update(dt)
     for i, enemy in ipairs(enemies) do
         local ex, ey = enemy:getPosition()
-        local maxX = enemy.pivotX + 300
-        local minX = enemy.pivotX - 300
-
-        if ex > maxX then
+        if ex > enemy.pivotX + 300 then
             enemy.direction = -1
         end
         
-        if ex < minX then
+        if ex < enemy.pivotX - 300 then
             enemy.direction = 1
         end
         
@@ -55,10 +52,11 @@ function enemies:update(dt)
 end
 
 function enemies:draw()
-    local enemyWidth = sprites.enemy:getHeight() / 2
-    local enemyHeight = sprites.enemy:getHeight() / 2 - 16
     for i, enemy in ipairs(enemies) do
-        local ex, ey = enemy:getPosition()
-        love.graphics.draw(sprites.enemy, ex - enemyWidth, ey - enemyHeight)
+        love.graphics.draw(
+            sprites.enemy, 
+            enemy:getX() - sprites.enemy:getHeight() / 2, 
+            enemy:getY() - sprites.enemy:getHeight() / 4
+        )
     end
 end
