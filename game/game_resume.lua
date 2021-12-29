@@ -6,7 +6,6 @@ function updateGameResume(dt)
 end
 
 function drawGameResume()
-    world:draw()
     drawMap()
     drawGame()
     drawHud()
