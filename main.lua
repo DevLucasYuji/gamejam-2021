@@ -29,7 +29,7 @@ function love.load()
 
     -- Current Game state
     GAMESTATE = game.state.resume
-    GAMEMAP = loadMap(level.two)
+    GAMEMAP = loadMap(level.one)
 
     -- init setup
         love.window.setTitle("Brando's adventure")
