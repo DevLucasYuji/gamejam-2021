@@ -34,15 +34,15 @@ function player:update(dt)
 end
 
 function player:draw()
-    local px, py = player:getPosition()
-    player.animation:draw(sprites.player, px, py, nil, player.direction * 1, 1, 10, 40)
+    player.animation:draw(sprites.player, player:getX(), player:getY(), nil, player.direction * 1, 1, 10, 40)
 end
 
 function player:updateGround()
-    local colX = player:getX() - playerWidth / 2
-    local colY = player:getY() + playerHeight / 2
-    local colliders = world:queryRectangleArea(colX, colY, 50, 2, { 'Platform'})
-    player.isGrounded = #colliders > 0
+    player.isGrounded = #world:queryRectangleArea(
+        player:getX() - playerWidth / 4, 
+        player:getY() + playerHeight / 2, 
+        20, 2, {'Platform'}
+    ) > 0
 end
 
 function player:updateCam(dt)
@@ -62,17 +62,16 @@ function player:updateCam(dt)
 end
 
 function player:move(dt)    
-    local px, py = player:getPosition()
     player.animation = player.animations.idle
 
     if love.keyboard.isDown("left") then
-        player:setX(px - player.speed * dt)
+        player:setX(player:getX() - player.speed * dt)
         player.animation = player.animations.side
         player.direction = -1
     end
 
     if love.keyboard.isDown("right") then
-        player:setX(px + player.speed * dt)
+        player:setX(player:getX() + player.speed * dt)
         player.animation = player.animations.side
         player.direction = 1
     end
