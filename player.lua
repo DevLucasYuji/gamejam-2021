@@ -10,13 +10,16 @@ player = world:newRectangleCollider(playerStartX, playerStartY, playerWidth, pla
 player:setFixedRotation(true)
 player.speed = 360
 player.isGrounded = true
-player.isMoving = false
 player.direction = 1
 player.jumpPower = 2250
 
 player.grid = anim8.newGrid(25, 74, sprites.player:getWidth(), sprites.player:getHeight())
+
 player.animations = {}
+player.animations.idle = anim8.newAnimation(player.grid('1-1', 1), 0.2)
 player.animations.side = anim8.newAnimation(player.grid('1-4', 1), 0.2)
+
+player.animation = player.animations.idle
 
 function player:load()
     player:setPosition(playerStartX, playerStartY)
@@ -27,13 +30,12 @@ function player:update(dt)
         player:updateCam(dt)
         player:updateGround()
         player:move(dt)
-        player.animations.side:update(dt)
     end
 end
 
 function player:draw()
     local px, py = player:getPosition()
-    player.animations.side:draw(sprites.player, px, py, nil, player.direction * 1, 1, 10, 40)
+    player.animation:draw(sprites.player, px, py, nil, player.direction * 1, 1, 10, 40)
 end
 
 function player:updateGround()
@@ -61,17 +63,17 @@ end
 
 function player:move(dt)    
     local px, py = player:getPosition()
-    player.isMoving = false
+    player.animation = player.animations.idle
 
     if love.keyboard.isDown("left") then
         player:setX(px - player.speed * dt)
-        player.isMoving = true
+        player.animation = player.animations.side
         player.direction = -1
     end
 
     if love.keyboard.isDown("right") then
         player:setX(px + player.speed * dt)
-        player.isMoving = true
+        player.animation = player.animations.side
         player.direction = 1
     end
 
@@ -87,6 +89,8 @@ function player:move(dt)
         player:dead()
         GAMESTATE = game.state.gameover
     end
+
+    player.animation:update(dt)
 end
 
 function player:keypressed(key)
