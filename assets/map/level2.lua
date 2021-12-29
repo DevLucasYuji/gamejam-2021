@@ -641,19 +641,6 @@ return {
       properties = {},
       objects = {
         {
-          id = 21,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 121.78,
-          y = 646.964,
-          width = 16.5124,
-          height = 16.081,
-          rotation = 0.25822,
-          visible = true,
-          properties = {}
-        },
-        {
           id = 64,
           name = "",
           type = "",

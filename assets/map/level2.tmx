@@ -108,7 +108,6 @@
   <object id="20" x="1521.17" y="44.167" width="14.6667" height="31.3333"/>
  </objectgroup>
  <objectgroup id="5" name="ruby">
-  <object id="21" x="121.78" y="646.964" width="16.5124" height="16.081" rotation="0.25822"/>
   <object id="64" x="144.744" y="195.626" width="16.5124" height="16.081" rotation="0.25822"/>
   <object id="66" x="181.744" y="482.959" width="16.5124" height="16.081" rotation="0.25822"/>
   <object id="67" x="307.744" y="63.9595" width="16.5124" height="16.081" rotation="0.25822"/>
