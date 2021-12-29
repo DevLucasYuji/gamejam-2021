@@ -30,10 +30,11 @@ require 'map'
 
 -- Current Game state
 GAMESTATE = game.state.resume
-GAMEMAP = loadMap(level.one)
+GAMEMAP = loadMap(level.three)
 
 function love.load()
     -- init setup
+        love.window.setTitle("Brando's adventure")
         love.window.setMode(window.width, window.height)
         cam = cameraFile()
         world:setQueryDebugDrawing(true)
