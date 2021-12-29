@@ -1,6 +1,6 @@
 sprites = {}
 
-sprites.player = love.graphics.newImage('assets/sprites/player.png')
+sprites.player = love.graphics.newImage('assets/sprites/brando-spritesheet.png')
 sprites.player:setFilter("nearest", "nearest")
 
 sprites.ruby = love.graphics.newImage('assets/sprites/ruby-sprite.png')

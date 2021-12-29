@@ -14,6 +14,10 @@ player.isMoving = false
 player.direction = 1
 player.jumpPower = 2250
 
+player.grid = anim8.newGrid(25, 74, sprites.player:getWidth(), sprites.player:getHeight())
+player.animations = {}
+player.animations.side = anim8.newAnimation(player.grid('1-4', 1), 0.2)
+
 function player:load()
     player:setPosition(playerStartX, playerStartY)
 end
@@ -23,12 +27,13 @@ function player:update(dt)
         player:updateCam(dt)
         player:updateGround()
         player:move(dt)
+        player.animations.side:update(dt)
     end
 end
 
 function player:draw()
     local px, py = player:getPosition()
-    love.graphics.draw(sprites.player, px, py, nil, player.direction * 1, 1, 50, 40)
+    player.animations.side:draw(sprites.player, px, py, nil, player.direction * 1, 1, 10, 40)
 end
 
 function player:updateGround()
